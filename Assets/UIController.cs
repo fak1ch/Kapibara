@@ -7,11 +7,11 @@ public class UIController : MonoBehaviour
 {
     public Action OnGameStart;
 
-    [SerializeField] private GameObject _ui;
-    [SerializeField] private GameObject _info;
+    [SerializeField] private GameObject _uiGameProcess;
+    [SerializeField] private GameObject _uiOtherPanels;
     [SerializeField] private GameObject _uiButtons;
-    [SerializeField] private Player _player;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private Player _player;
 
     private void OnEnable()
     {
@@ -29,18 +29,17 @@ public class UIController : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    public void StartGame()
+    private void Start()
     {
-        _ui.SetActive(true);
-        _uiButtons.SetActive(false);
-        _info.SetActive(false);
-        _player.gameObject.SetActive(true);
-        OnGameStart?.Invoke();
+
     }
 
-    private void ShowGameOverPanel()
+    public void StartGame()
     {
-        _gameOverPanel.SetActive(true);
+        _uiGameProcess.SetActive(true);
+        _uiButtons.SetActive(false);
+        _player.gameObject.SetActive(true);
+        OnGameStart?.Invoke();
     }
 
     public void RestartGame()
@@ -51,13 +50,23 @@ public class UIController : MonoBehaviour
         _player.GameRestart();
     }
 
+    public void OpenInfo(GameObject infoPanel)
+    {
+        infoPanel.SetActive(true);
+    }
+
+    public void ShowSettings(GameObject settings)
+    {
+        settings.SetActive(true);
+    }
+
+    private void ShowGameOverPanel()
+    {
+        _gameOverPanel.SetActive(true);
+    }
+
     public void HideGameOverPanel()
     {
         _gameOverPanel.SetActive(false);
-    }
-
-    public void OpenInfo()
-    {
-        _info.SetActive(true);
     }
 }

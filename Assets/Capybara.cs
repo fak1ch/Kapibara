@@ -99,7 +99,10 @@ public class Capybara : MonoBehaviour
     private void GameContinue()
     {
         _isGameOver = false;
-        _navMeshAgent.enabled = true;
+        if (_navMeshAgent != null)
+            _navMeshAgent.enabled = true;
+        else
+            TryGetComponent(out _navMeshAgent);
         _audioSource.Play();
     }
 

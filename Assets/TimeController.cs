@@ -67,6 +67,7 @@ public class TimeController : MonoBehaviour
 
     private void GameContinue()
     {
+        Debug.Log("hi");
         OnMinuteLater?.Invoke();
         _gameInProgress = true;
     }
