@@ -15,7 +15,7 @@ public class SettingsPanel : MonoBehaviour
 
     private void Awake()
     {
-        _sensaSlider.value = PlayerPrefs.GetFloat("rotateSpeed");
+        _sensaSlider.value = PlayerPrefs.GetFloat("rotateSpeed", 2f);
         ChangeSensaSlider();
         gameObject.SetActive(false);
     }
