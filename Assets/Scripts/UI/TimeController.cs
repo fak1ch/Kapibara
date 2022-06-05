@@ -12,7 +12,6 @@ public class TimeController : MonoBehaviour
     public Action OnGamePassed;
 
     [SerializeField] private float _minutesUntilGameOver = 5f;
-    [SerializeField] private Player _player;
 
     private Text _timeText;
     private float _secUntilGameOver;
@@ -22,20 +21,6 @@ public class TimeController : MonoBehaviour
 
     public float SecUntilGameOver => _secUntilGameOver;
     public float GetSecUntilGameOver { set { _secOneMinuteLater = value; } }
-
-    private void OnEnable()
-    {
-        _player.OnGameOver += PauseTime;
-        _player.OnGameRestart += RestartTime;
-        _player.OnGameContinue += GameContinue;
-    }
-
-    private void OnDisable()
-    {
-        _player.OnGameOver -= PauseTime;
-        _player.OnGameRestart -= RestartTime;
-        _player.OnGameContinue -= GameContinue;
-    }
 
     private void Start()
     {
@@ -65,31 +50,34 @@ public class TimeController : MonoBehaviour
         }
     }
 
-    private void GameContinue()
-    {
-        Debug.Log("hi");
-        OnMinuteLater?.Invoke();
-        _gameInProgress = true;
-    }
-
     private void RefreshTimer()
     {
         int minutes = Mathf.FloorToInt(_secUntilGameOver / 60);
         int seconds = Mathf.FloorToInt(_secUntilGameOver - minutes * 60);
+
+        if (seconds < 10)
+            _timeText.text = $"{minutes}:0{seconds}";
+        else
         _timeText.text = $"{minutes}:{seconds}";
 
         if (_secUntilGameOver <= 0)
         {
             _gameInProgress = false;
             OnGamePassed?.Invoke();
-            _player.transform.position = new Vector3(0, 0, -51);
-            _player.transform.rotation = Quaternion.Euler(0, 90, 0);
-            GameObject.FindGameObjectWithTag("RelaxMusic").GetComponent<AudioSource>().Play();
+            PlayerEventsController.Instance
+                .GetPlayer
+                .MoveAndRotatePlayer(new Vector3(0, 0, -51), new Vector3(0, 90, 0));
             gameObject.SetActive(false);
         }
     }
 
-    private void RestartTime()
+    public void TimeContinue()
+    {
+        OnMinuteLater?.Invoke();
+        _gameInProgress = true;
+    }
+
+    public void RestartTime()
     {
         _secUntilGameOver = _minutesUntilGameOver * 60;
         _secOneMinuteLater = _secUntilGameOver;
@@ -98,7 +86,7 @@ public class TimeController : MonoBehaviour
         OnMinuteLater?.Invoke();
     }
 
-    private void PauseTime()
+    public void PauseTime()
     {
         _gameInProgress = false;
     }

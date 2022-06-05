@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using System.Collections;
 
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
@@ -8,8 +9,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] private Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
-    string _adUnitId = null;
-    private bool _adsWasShown = false;
+    private string _adUnitId = null;
 
     public Button ShowAdButton => _showAdButton;
 
@@ -25,10 +25,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         Advertisement.Load(_adUnitId, this);
     }
 
-    private void Start()
-    {
-        LoadAd();
-    }
     // If the ad successfully loads, add a listener to the button and enable it:
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
@@ -50,13 +46,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED) && _adsWasShown == false)
+        if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
-            _adsWasShown = true;
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
             _player.gameObject.SetActive(true);
-            _player.GameContinue();
+            _player.RespawnPlayerHere();
             // Load another ad:
             LoadAd();
         }
@@ -65,14 +60,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     // Implement Load and Show Listener error callbacks:
     public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
     {
-        LoadAd();
-        // Use the error details to determine whether to try to load another ad.
+        GameObject.Find("cp").GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
-        Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        LoadAd();
+        GameObject.Find("cp").GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void OnUnityAdsShowStart(string adUnitId) { }

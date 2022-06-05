@@ -20,7 +20,7 @@ public class Capybara : MonoBehaviour
 
     private void Awake()
     {
-        _player = FindObjectOfType<Player>();
+        _player = PlayerEventsController.Instance.GetPlayer;
     }
 
     private void OnEnable()
@@ -62,7 +62,6 @@ public class Capybara : MonoBehaviour
             transform.rotation = rotateVector;
         }
     }
-
 
     private void OnTriggerEnter(Collider other)
     {

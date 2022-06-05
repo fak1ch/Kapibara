@@ -15,7 +15,6 @@ public class CapybaraSpawner : MonoBehaviour
         _timeController.OnLastTenSeconds += SpawnCapybariesAtAllPoints;
         _timeController.OnMinuteLater += SpawnRandomCapybaraAtRandomSpawnPoint;
         _timeController.OnGamePassed += GamePassed;
-        _uiController.OnGameStart += GameStart;
     }
 
     private void OnDisable()
@@ -23,7 +22,6 @@ public class CapybaraSpawner : MonoBehaviour
         _timeController.OnLastTenSeconds -= SpawnCapybariesAtAllPoints;
         _timeController.OnMinuteLater -= SpawnRandomCapybaraAtRandomSpawnPoint;
         _timeController.OnGamePassed -= GamePassed;
-        _uiController.OnGameStart -= GameStart;
     }
 
     private void GamePassed()
@@ -33,11 +31,6 @@ public class CapybaraSpawner : MonoBehaviour
         {
             capybaries[i].gameObject.SetActive(false);
         }
-    }
-
-    private void GameStart()
-    {
-
     }
 
     private void SpawnRandomCapybaraAtRandomSpawnPoint()

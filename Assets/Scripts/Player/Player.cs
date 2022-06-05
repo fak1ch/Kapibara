@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _health = 5f;
     [SerializeField] private RewardedAdsButton _rewardedAdsButton;
+    [SerializeField] private Camera _mainCamera;
 
     private TouchControl _touchControl;
     private Vector3 _startPosition;
@@ -72,19 +74,27 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GameRestart()
+    public void RecreatePlayer()
     {
         _rewardedAdsButton.ShowAdButton.enabled = true;
         gameObject.SetActive(true);
+        MoveAndRotatePlayer(new Vector3(0, 0, 0), new Vector3(0, 90, 0));
         _health = 1;
         OnGameRestart?.Invoke();
     }
 
-    public void GameContinue()
+    public void RespawnPlayerHere()
     {
         _rewardedAdsButton.ShowAdButton.enabled = false;
         _health = 1;
-        FindObjectOfType<UIController>().HideGameOverPanel();
         OnGameContinue?.Invoke();
+    }
+
+    public void MoveAndRotatePlayer(Vector3 newPosition, Vector3 eulers)
+    {
+        _mainCamera.transform.position = newPosition;
+        _mainCamera.transform.rotation = Quaternion.Euler(eulers);
+        transform.position = newPosition;
+        transform.rotation = Quaternion.Euler(eulers);
     }
 }
