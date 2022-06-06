@@ -18,6 +18,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _adUnitId = _androidAdUnitId;
     }
 
+
     public void LoadAd()
     {
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
@@ -32,8 +33,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
         if (adUnitId.Equals(_adUnitId))
         {
-            // Configure the button to call the ShowAd() method when clicked:
-            _showAdButton.onClick.AddListener(ShowAd);
+            ShowAd();
         }
     }
 
@@ -53,7 +53,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             _player.gameObject.SetActive(true);
             _player.RespawnPlayerHere();
             // Load another ad:
-            LoadAd();
         }
     }
 

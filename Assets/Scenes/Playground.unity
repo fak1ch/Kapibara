@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 218512664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12f1f5f63274b04eb35e075d9bba7c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 98ed7316f6d71ad4c868ff44e7002054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
@@ -4815,7 +4815,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 752763978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26aaec47f4ebf004e87680a257912f0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d2e058eeca25cf43a7c35c65c0b6d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _timeUntilHide: 5
@@ -5989,7 +5989,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 851014398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52666a2dedecd124e8ad0cbab7145c7e, type: 3}
+  m_Script: {fileID: 11500000, guid: c26b1be192903b64fb9134e7cb6d3e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _minutesUntilGameOver: 5
@@ -9555,14 +9555,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418076724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9209200410d54448c2afd265502c16, type: 3}
+  m_Script: {fileID: 11500000, guid: cddf0ac54792a844b862ec724e489105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _uiController: {fileID: 2016340725}
   _timeController: {fileID: 851014402}
   _capybaraPrefabs:
-  - {fileID: 4555295583114093945, guid: ccee00c0022333649958f8223ca1e9ec, type: 3}
   - {fileID: 2387330692026793039, guid: 67b611b776eb13847997bd22673709e0, type: 3}
+  - {fileID: 4555295583114093945, guid: ccee00c0022333649958f8223ca1e9ec, type: 3}
   _spawnPoints:
   - {fileID: 1339557853}
   - {fileID: 1380683227}
@@ -10371,7 +10371,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1539071901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044b32b6c23a8354cab48a1e719b6542, type: 3}
+  m_Script: {fileID: 11500000, guid: c701e0abef4437c41bdbeb7afd9b11b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _androidGameId: 4763307
@@ -13531,7 +13531,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937011421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77cdc90345165064f966f0e52612e9ee, type: 3}
+  m_Script: {fileID: 11500000, guid: a97043d08712d19409a150e2a88c724f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _sensaSlider: {fileID: 1511398421}
@@ -13963,7 +13963,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1833788519}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988148338}
+        m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
+        m_MethodName: LoadAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1988148337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13981,7 +13993,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988148334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbab7db8f18fe034d828c646f6b5e66d, type: 3}
+  m_Script: {fileID: 11500000, guid: 87c874ffc27f9054b995ccc80cd6fd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 4416926083347132229}
@@ -14125,7 +14137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004142427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3df4a27bca666409123d711a9f1a73, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e37ba5dee954ed4786153684a58fcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _timeController: {fileID: 851014402}
@@ -14250,7 +14262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6751388636333680098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0379cfa969e0c0b41a423a11069d1dfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 497cfc6d72737344c9dde824dbf4cc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _uiGameProcess: {fileID: 1393095073}
@@ -14877,9 +14889,9 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
-  analogMovement: 0
-  cursorLocked: 0
-  cursorInputForLook: 0
+  analogMovement: 1
+  cursorLocked: 1
+  cursorInputForLook: 1
 --- !u!224 &597308371062931948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15322,7 +15334,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4416926083347132227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b590e344eb44c0e4f9e50fe4b8bcfc76, type: 3}
+  m_Script: {fileID: 11500000, guid: c026aa3da4e52514dad2318066a45539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
