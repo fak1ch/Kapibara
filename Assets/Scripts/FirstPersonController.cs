@@ -20,6 +20,10 @@ namespace StarterAssets
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+		[Tooltip("Rotate camera with swipes or joystick")]
+		[SerializeField] private bool _swipeControls = true;
+		[Tooltip("SwipeLibrary")]
+		[SerializeField] private SwipeLibrary _swipeLibrary;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -114,14 +118,20 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
-			// if there is an input
-			if (_input.look.sqrMagnitude >= _threshold)
-			{
+
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 				
-				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
-				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
+				if (_swipeControls == true)
+                {
+					_cinemachineTargetPitch += -_swipeLibrary.RotateVector2.x * RotationSpeed * deltaTimeMultiplier;
+					_rotationVelocity = -_swipeLibrary.RotateVector2.y * RotationSpeed * deltaTimeMultiplier;
+				}
+                else
+                {
+					_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
+					_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
+				}
 
 				// clamp our pitch rotation
 				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -130,8 +140,9 @@ namespace StarterAssets
 				CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
 
 				// rotate the player left and right
+				Debug.Log(_rotationVelocity);
 				transform.Rotate(Vector3.up * _rotationVelocity);
-			}
+
 		}
 
 		private void Move()

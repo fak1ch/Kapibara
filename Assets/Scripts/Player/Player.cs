@@ -16,40 +16,12 @@ public class Player : MonoBehaviour
     [SerializeField] private RewardedAdsButton _rewardedAdsButton;
     [SerializeField] private Camera _mainCamera;
 
-    private TouchControl _touchControl;
     private Vector3 _startPosition;
     private bool _isImmortalityActive = false;
-
-    private void Awake()
-    {
-        _touchControl = new TouchControl();
-    }
-
-    private void OnEnable()
-    {
-        _touchControl.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _touchControl.Disable();
-    }
 
     private void Start()
     {
         _startPosition = transform.position;
-        _touchControl.Player.TouchPress.started += ctx => StartTouch(ctx);
-        _touchControl.Player.TouchPress.canceled += ctx => EndTouch(ctx);
-    }
-
-    private void StartTouch(InputAction.CallbackContext context)
-    {
-        Debug.Log("Touch started " + _touchControl.Player.TouchPosition.ReadValue<Vector2>());
-    }
-
-    private void EndTouch(InputAction.CallbackContext context)
-    {
-        Debug.Log("Touch end " + _touchControl.Player.TouchPosition.ReadValue<Vector2>());
     }
 
     public void TakeDamage(int damage)
