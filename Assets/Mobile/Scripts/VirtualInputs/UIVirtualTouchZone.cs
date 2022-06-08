@@ -20,6 +20,7 @@ public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandl
     //Stored Pointer Values
     private Vector2 pointerDownPosition;
     private Vector2 currentPointerPosition;
+    private Vector2 lastFramePosition;
 
     [Header("Output")]
     public UnityEvent<Vector2> touchZoneOutputEvent;
@@ -39,10 +40,11 @@ public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRect, eventData.position, eventData.pressEventCamera, out pointerDownPosition);
+        
+        lastFramePosition = pointerDownPosition;
 
-        if(handleRect)
+        if (handleRect)
         {
             SetObjectActiveState(handleRect.gameObject, true);
             UpdateHandleRectPosition(pointerDownPosition);
@@ -51,22 +53,32 @@ public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandl
 
     public void OnDrag(PointerEventData eventData)
     {
-
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRect, eventData.position, eventData.pressEventCamera, out currentPointerPosition);
         
-        Vector2 positionDelta = GetDeltaBetweenPositions(pointerDownPosition, currentPointerPosition);
+        Vector2 positionDelta = GetDeltaBetweenPositions(lastFramePosition, currentPointerPosition);
 
-        Vector2 clampedPosition = ClampValuesToMagnitude(positionDelta);
+        //Vector2 clampedPosition = ClampValuesToMagnitude(positionDelta);
         
-        Vector2 outputPosition = ApplyInversionFilter(clampedPosition);
+        Vector2 outputPosition = ApplyInversionFilter(positionDelta);
 
-        OutputPointerEventValue(outputPosition * magnitudeMultiplier);
+        Debug.Log(outputPosition.magnitude);
+        if (outputPosition.magnitude <= 1f)
+        {
+            OutputPointerEventValue(Vector2.zero * magnitudeMultiplier);
+        }
+        else
+        {
+            OutputPointerEventValue(outputPosition * magnitudeMultiplier);
+        }
+
+        lastFramePosition = currentPointerPosition;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         pointerDownPosition = Vector2.zero;
         currentPointerPosition = Vector2.zero;
+        lastFramePosition = Vector2.zero;
 
         OutputPointerEventValue(Vector2.zero);
 

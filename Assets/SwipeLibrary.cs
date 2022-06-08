@@ -15,10 +15,6 @@ public class SwipeLibrary : MonoBehaviour
     [SerializeField] private bool _checkSwipesDirection = false;
     [SerializeField] private bool _showTrail = false;
     [SerializeField] private bool _moveCameraWithSwipes = false;
-    [SerializeField] private bool _rotateCameraWithSwipes = false;
-
-    [Space(10)]
-    [SerializeField] private float _rotateCameraSensivity = 1;
 
     private Camera _mainCamera;
     private TrailRenderer _trail;
@@ -29,10 +25,7 @@ public class SwipeLibrary : MonoBehaviour
     private float _endTime;
 
     private Coroutine _moveCameraCoroutine;
-    private Coroutine _rotateCameraCoroutine;
     private Coroutine _trailCoroutine;
-
-    public Vector2 RotateVector2 { get; set; }
 
     private void OnEnable()
     {
@@ -72,24 +65,6 @@ public class SwipeLibrary : MonoBehaviour
         }
     }
 
-    private IEnumerator RotateCamera()
-    {
-        Vector3 lastFramePosition = _startPosition;
-        while (true)
-        {
-            float angleY = _inputManager.GetTouchPosition().x - lastFramePosition.x;
-            float angleX = _inputManager.GetTouchPosition().y - lastFramePosition.y;
-            RotateVector2 = new Vector2(angleX, -angleY);
-            //Vector3 rotation = _mainCamera.transform.eulerAngles;
-            //rotation.x += -angleX * 3 * _rotateCameraSensivity;
-            //rotation.y += angleY * 3 * _rotateCameraSensivity;
-            //rotation.z = 0;
-            //_mainCamera.transform.eulerAngles = rotation;
-            lastFramePosition = _inputManager.GetTouchPosition();
-            yield return null;
-        }
-    }
-
     private IEnumerator Trail()
     {
         while (true)
@@ -119,14 +94,10 @@ public class SwipeLibrary : MonoBehaviour
         if (_moveCameraWithSwipes == true)
             _moveCameraCoroutine = StartCoroutine(MoveCamera());
 
-        if (_rotateCameraWithSwipes)
-            _rotateCameraCoroutine = StartCoroutine(RotateCamera());
     }
 
     private void SwipeEndTaskController()
     {
-        RotateVector2 = Vector2.zero;
-
         if (_showTrail == true)
         {
             _trail.enabled = false;
@@ -135,9 +106,6 @@ public class SwipeLibrary : MonoBehaviour
 
         if (_moveCameraWithSwipes)
             StopCoroutine(_moveCameraCoroutine);
-
-        if (_rotateCameraWithSwipes)
-            StopCoroutine(_rotateCameraCoroutine);
 
         if (_checkSwipesDirection == true)
             DetectSwipe();
