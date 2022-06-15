@@ -1,10 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Utils : MonoBehaviour
+public class Utils : MonoSingleton<Utils>
 {
-    public static Vector3 ScreenToWorld(Camera camera, Vector3 position)
+    [SerializeField] private Text _debugLog;
+    private string _textLog = "DEBUG LOG: \n";
+
+    public void DebugLog(string msg)
     {
-        position.z = 10;
-        return camera.ScreenToWorldPoint(position);
+        _textLog += "\n" + msg + "\n";
+        _debugLog.text = _textLog;
+        Debug.Log(msg);
+    }
+
+    public void DebugLog(Vector2 vector)
+    {
+        _textLog += "\n" + vector.ToString() + "\n";
+        _debugLog.text = _textLog;
+        Debug.Log(vector.ToString());
+    }
+
+    public void DebugLog(float value)
+    {
+        _textLog += "\n" + value + "\n";
+        _debugLog.text = _textLog;
+        Debug.Log(value);
     }
 }

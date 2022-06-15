@@ -10,6 +10,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     private string _adUnitId = null;
+    private bool _rewardedVideoReadyToShow = false;
 
     public Button ShowAdButton => _showAdButton;
 
@@ -18,57 +19,68 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _adUnitId = _androidAdUnitId;
     }
 
-
     public void LoadAd()
     {
-        // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
-        Debug.Log("Loading Ad: " + _adUnitId);
+        Utils.Instance.DebugLog("Loading Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
     }
 
-    // If the ad successfully loads, add a listener to the button and enable it:
-    public void OnUnityAdsAdLoaded(string adUnitId)
-    {
-        Debug.Log("Ad Loaded: " + adUnitId);
-
-        if (adUnitId.Equals(_adUnitId))
-        {
-            ShowAd();
-        }
-    }
-
-    // Implement a method to execute when the user clicks the button:
     public void ShowAd()
     {
         Advertisement.Show(_adUnitId, this);
     }
 
-    // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        if (adUnitId.Equals(_adUnitId))
         {
-            Debug.Log("Unity Ads Rewarded Ad Completed");
-            // Grant a reward.
+            Utils.Instance.DebugLog("Unity Ads Rewarded Ad Completed");
+
             _player.gameObject.SetActive(true);
             _player.RespawnPlayerHere();
-            // Load another ad:
         }
     }
 
-    // Implement Load and Show Listener error callbacks:
-    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
+    #region Interface Implementations
+
+    public void OnUnityAdsAdLoaded(string placementId)
     {
-        GameObject.Find("cp").GetComponent<SpriteRenderer>().color = Color.red;
+        if (placementId == _adUnitId)
+        {
+            Utils.Instance.DebugLog("Ad Loaded: " + _adUnitId);
+            _rewardedVideoReadyToShow = true;
+        }
     }
 
-    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
+    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
-        GameObject.Find("cp").GetComponent<SpriteRenderer>().color = Color.green;
+        Utils.Instance.DebugLog($"Load Failed: [{error}:{placementId}] {message}");
+        LoadAd();
     }
 
-    public void OnUnityAdsShowStart(string adUnitId) { }
-    public void OnUnityAdsShowClick(string adUnitId) { }
+    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
+    {
+        Utils.Instance.DebugLog($"OnUnityAdsShowFailure: [{error}]: {message}");
+        ShowAd();
+    }
+
+    public void OnUnityAdsShowStart(string placementId)
+    {
+        Utils.Instance.DebugLog($"OnUnityAdsShowStart: {placementId}");
+        _rewardedVideoReadyToShow = false;
+        LoadAd();
+    }
+
+    public void OnUnityAdsShowClick(string placementId)
+    {
+        Utils.Instance.DebugLog($"OnUnityAdsShowClick: {placementId}");
+    }
+
+    //public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
+    //{
+    //    Utils.Instance.DebugLog($"OnUnityAdsShowComplete: [{showCompletionState}]: {placementId}");
+    //}
+    #endregion
 
     void OnDestroy()
     {

@@ -69,7 +69,7 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
-		private const float _threshold = 0.01f;
+		private const float _threshold = 0.5f;
 		
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
@@ -119,8 +119,8 @@ namespace StarterAssets
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-				_cinemachineTargetPitch += _input.look.y * 10 * RotationSpeed * deltaTimeMultiplier;
-				_rotationVelocity = _input.look.x * 10 * RotationSpeed * deltaTimeMultiplier;
+				_cinemachineTargetPitch += _input.look.y * 5 * RotationSpeed * deltaTimeMultiplier;
+				_rotationVelocity = _input.look.x * 5 * RotationSpeed * deltaTimeMultiplier;
 
 				// clamp our pitch rotation
 				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);

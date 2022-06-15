@@ -57,19 +57,11 @@ public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandl
         
         Vector2 positionDelta = GetDeltaBetweenPositions(lastFramePosition, currentPointerPosition);
 
-        //Vector2 clampedPosition = ClampValuesToMagnitude(positionDelta);
+        Vector2 clampedPosition = ClampValuesToMagnitude(positionDelta);
         
-        Vector2 outputPosition = ApplyInversionFilter(positionDelta);
+        Vector2 outputPosition = ApplyInversionFilter(clampedPosition);
 
-        Debug.Log(outputPosition.magnitude);
-        if (outputPosition.magnitude <= 1f)
-        {
-            OutputPointerEventValue(Vector2.zero * magnitudeMultiplier);
-        }
-        else
-        {
-            OutputPointerEventValue(outputPosition * magnitudeMultiplier);
-        }
+        OutputPointerEventValue(outputPosition);
 
         lastFramePosition = currentPointerPosition;
     }
@@ -111,7 +103,14 @@ public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandl
 
     Vector2 ClampValuesToMagnitude(Vector2 position)
     {
-        return Vector2.ClampMagnitude(position, 1);
+        Vector2 newPosition = Vector2.ClampMagnitude(position, magnitudeMultiplier);
+
+        if (Mathf.Abs(newPosition.x) <= 0.72)
+            newPosition.x = 0;
+        else if (Mathf.Abs(newPosition.y) <= 0.72)
+            newPosition.y = 0;
+
+        return newPosition;
     }
 
     Vector2 ApplyInversionFilter(Vector2 position)
