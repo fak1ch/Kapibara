@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TouchNamespace;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,11 +14,19 @@ public class Player : MonoBehaviour
     public Action OnGameContinue;
 
     [SerializeField] private float _health = 5f;
-    [SerializeField] private RewardedAdsButton _rewardedAdsButton;
+    [SerializeField] private Button _respawnPlayerButton;
     [SerializeField] private Camera _mainCamera;
 
     private Vector3 _startPosition;
     private bool _isImmortalityActive = false;
+
+    public Button RespawnPlayerButton
+    {
+        set
+        {
+            _respawnPlayerButton = value;
+        }
+    }
 
     private void Start()
     {
@@ -48,7 +57,7 @@ public class Player : MonoBehaviour
 
     public void RecreatePlayer()
     {
-        _rewardedAdsButton.ShowAdButton.enabled = true;
+        _respawnPlayerButton.enabled = true;
         gameObject.SetActive(true);
         MoveAndRotatePlayer(new Vector3(0, 0, 0), new Vector3(0, 90, 0));
         _health = 1;
@@ -57,7 +66,7 @@ public class Player : MonoBehaviour
 
     public void RespawnPlayerHere()
     {
-        _rewardedAdsButton.ShowAdButton.enabled = false;
+        _respawnPlayerButton.enabled = false;
         _health = 1;
         OnGameContinue?.Invoke();
     }
