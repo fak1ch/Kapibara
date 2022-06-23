@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _uiOtherPanels;
     [SerializeField] private GameObject _uiButtons;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _selectGameModePanel;
 
     private void Awake()
     {
@@ -18,10 +20,16 @@ public class UIController : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
+    public void PlayButtonClick()
+    {
+        _selectGameModePanel.SetActive(true);
+    }
+
     public void StartGame()
     {
         _uiGameProcess.SetActive(true);
         _uiButtons.SetActive(false);
+        _selectGameModePanel.SetActive(false);
         PlayerEventsController.Instance
             .GetPlayer
             .gameObject

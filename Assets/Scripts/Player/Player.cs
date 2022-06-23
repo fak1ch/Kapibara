@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private Vector3 _startPosition;
     private bool _isImmortalityActive = false;
 
+    public GameObject YouPassedMaze;
+
     public Button RespawnPlayerButton
     {
         set

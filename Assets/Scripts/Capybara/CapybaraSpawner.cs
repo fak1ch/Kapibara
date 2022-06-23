@@ -13,6 +13,9 @@ public class CapybaraSpawner : MonoBehaviour
 
     [SerializeField] private bool _defaultGameMode = true;
 
+    public int CapybaraSpeed = 10;
+    public int CapybaraAccelaration = 8;
+
     private void OnEnable()
     {
         if (_defaultGameMode)
@@ -33,7 +36,7 @@ public class CapybaraSpawner : MonoBehaviour
         _timeController.OnTimeOver -= TimeOver;
     }
 
-    private void TimeOver()
+    public void TimeOver()
     {
         Capybara[] capybaries = FindObjectsOfType<Capybara>();
         for(int i=0; i<capybaries.Length; i++)
@@ -49,8 +52,8 @@ public class CapybaraSpawner : MonoBehaviour
 
         var capybara = Instantiate(_capybaraPrefabs[indexCapybara], _spawnPoints[indexSpawnPoint].position, Quaternion.identity);
 
-        if (_defaultGameMode == false)
-            capybara.GetComponent<NavMeshAgent>().acceleration = 80;
+        capybara.GetComponent<NavMeshAgent>().acceleration = CapybaraAccelaration;
+        capybara.GetComponent<NavMeshAgent>().speed = CapybaraSpeed;
     }
 
     private void SpawnCapybariesAtAllPoints()

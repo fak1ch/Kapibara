@@ -14,6 +14,7 @@ public class TimeController : MonoBehaviour
     [SerializeField] private float _minutesUntilTimeOut = 5f;
     [SerializeField] private bool _defaultGameMode = true;
     [SerializeField] private float _secondsUntilSpawnFirstCapybara;
+    [SerializeField] private SelectGameMode _selectGameMode;
 
     private Text _timeText;
     private float _secUntilGameOver;
@@ -23,6 +24,24 @@ public class TimeController : MonoBehaviour
 
     public float SecUntilGameOver => _secUntilGameOver;
     public float GetSecUntilGameOver { set { _secOneMinuteLater = value; } }
+    public float MaxSeconds
+    {
+        get
+        {
+            return _minutesUntilTimeOut * 60;
+        }
+        set
+        {
+            _minutesUntilTimeOut = value;
+        }
+    }
+    public float SecondsUntilSpawnCapybara
+    {
+        set
+        {
+            _secondsUntilSpawnFirstCapybara = value;
+        }
+    }
 
     private void Start()
     {
@@ -116,6 +135,7 @@ public class TimeController : MonoBehaviour
             PlayerEventsController.Instance
                 .GetPlayer
                 .MoveAndRotatePlayer(new Vector3(0, 0, -51), new Vector3(0, 90, 0));
+            _selectGameMode.MazeComplete(0);
         }
         else
         {

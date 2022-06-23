@@ -7,9 +7,17 @@ public class MazeSpawner : MonoBehaviour
     [SerializeField] private GameObject _mazeCell;
     [SerializeField] private RealtimeNavMeshBaker _environment;
 
-    private void Start()
+    [SerializeField] private int _width;
+    [SerializeField] private int _height;
+
+    private MazeCell _exitCell;
+
+    public void AfterSceneLoader(int width, int height)
     {
-        MazeGenerator mazeGenerator = new MazeGenerator();
+        _width = width;
+        _height = height;
+
+        MazeGenerator mazeGenerator = new MazeGenerator(_width, _height);
 
         MazeGeneratorCell[,] maze = mazeGenerator.GenerateMaze();
 
@@ -23,8 +31,13 @@ public class MazeSpawner : MonoBehaviour
                 cell.WallBottom.SetActive(maze[i, j].WallBottom);
 
                 cell.transform.SetParent(_environment.transform);
+
+                if (maze[i, j] == mazeGenerator.ExitCell)
+                    _exitCell = cell;
             }
         }
+
+        _exitCell.MakeWallsGreenExitFromMaze(mazeGenerator._isLeftWall);
 
         _environment.BuildNavMesh(false);
     }

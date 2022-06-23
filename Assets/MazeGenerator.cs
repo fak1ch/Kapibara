@@ -5,9 +5,18 @@ using Random = UnityEngine.Random;
 
 public class MazeGenerator
 {
+    public MazeGeneratorCell ExitCell;
+    public bool _isLeftWall = false;
+
     private int _width = 20;
     private int _height = 20;
      
+    public MazeGenerator(int width, int height)
+    {
+        _width = width;
+        _height = height;
+    }
+
     public MazeGeneratorCell[,] GenerateMaze()
     {
         MazeGeneratorCell[,] maze = new MazeGeneratorCell[_width, _height];
@@ -117,13 +126,29 @@ public class MazeGenerator
         }
 
         if (furthest.X == 0)
+        {
             furthest.WallLeft = false;
+            ExitCell = furthest;
+            _isLeftWall = true;
+        }
         else if (furthest.Y == 0)
+        {
             furthest.WallBottom = false;
+            ExitCell = furthest;
+            _isLeftWall = false;
+        }
         else if (furthest.X == _width - 2)
+        {
             maze[furthest.X + 1, furthest.Y].WallLeft = false;
+            ExitCell = maze[furthest.X + 1, furthest.Y];
+            _isLeftWall = true;
+        }
         else if (furthest.Y == _height - 2)
-            maze[furthest.X, furthest.Y+1].WallBottom = false;
+        {
+            maze[furthest.X, furthest.Y + 1].WallBottom = false;
+            ExitCell = maze[furthest.X, furthest.Y + 1];
+            _isLeftWall = false;
+        }
     }
 }
 

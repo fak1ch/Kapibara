@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5373862255460922010}
   - component: {fileID: 5373862255460922086}
   - component: {fileID: 5373862255460922087}
+  - component: {fileID: 1472086508218833094}
   - component: {fileID: 5373862255460922084}
   - component: {fileID: 5373862255460922085}
   m_Layer: 0
@@ -83,6 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1472086508218833094
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373862255460922011}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &5373862255460922084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -159,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WallLeft: {fileID: 5373862255460922011}
   WallBottom: {fileID: 5501339390889095153}
+  _greenMaterial: {fileID: 2100000, guid: 5d710fb160873be449be9e56d937a83a, type: 2}
 --- !u!1 &5501339390889095153
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +188,7 @@ GameObject:
   - component: {fileID: 7936686974875714224}
   - component: {fileID: 6865297816518308483}
   - component: {fileID: 3894603635020973932}
+  - component: {fileID: 212818578877100287}
   - component: {fileID: 8217797037786307765}
   - component: {fileID: 7787106710117454594}
   m_Layer: 0
@@ -242,6 +261,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &212818578877100287
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501339390889095153}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &8217797037786307765
 BoxCollider:
   m_ObjectHideFlags: 0
