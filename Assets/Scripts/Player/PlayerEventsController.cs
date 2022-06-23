@@ -11,10 +11,7 @@ public class PlayerEventsController : MonoSingleton<PlayerEventsController>
     {
         get
         {
-            if (_player != null)
-                return _player;
-            else
-                return null;
+            return _player;
         }
     }
 
@@ -32,8 +29,9 @@ public class PlayerEventsController : MonoSingleton<PlayerEventsController>
         _player.OnGameContinue -= GameContinue;
     }
 
-    private void GameOver()
+    public void GameOver()
     {
+        _player.gameObject.SetActive(false);
         _timeController.PauseTime();
         _uiController.ShowGameOverPanel();
     }

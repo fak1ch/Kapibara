@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CapybaraSpawner : MonoBehaviour
 {
@@ -10,21 +11,29 @@ public class CapybaraSpawner : MonoBehaviour
 
     [SerializeField] private Transform[] _spawnPoints;
 
+    [SerializeField] private bool _defaultGameMode = true;
+
     private void OnEnable()
     {
-        _timeController.OnLastTenSeconds += SpawnCapybariesAtAllPoints;
+        if (_defaultGameMode)
+        {
+            _timeController.OnLastTenSeconds += SpawnCapybariesAtAllPoints;
+        }
         _timeController.OnMinuteLater += SpawnRandomCapybaraAtRandomSpawnPoint;
-        _timeController.OnGamePassed += GamePassed;
+        _timeController.OnTimeOver += TimeOver;
     }
 
     private void OnDisable()
     {
-        _timeController.OnLastTenSeconds -= SpawnCapybariesAtAllPoints;
+        if (_defaultGameMode)
+        {
+            _timeController.OnLastTenSeconds -= SpawnCapybariesAtAllPoints;
+        }
         _timeController.OnMinuteLater -= SpawnRandomCapybaraAtRandomSpawnPoint;
-        _timeController.OnGamePassed -= GamePassed;
+        _timeController.OnTimeOver -= TimeOver;
     }
 
-    private void GamePassed()
+    private void TimeOver()
     {
         Capybara[] capybaries = FindObjectsOfType<Capybara>();
         for(int i=0; i<capybaries.Length; i++)
@@ -38,7 +47,10 @@ public class CapybaraSpawner : MonoBehaviour
         int indexCapybara = Random.Range(0, _capybaraPrefabs.Length);
         int indexSpawnPoint = Random.Range(0, _spawnPoints.Length);
 
-        Instantiate(_capybaraPrefabs[indexCapybara], _spawnPoints[indexSpawnPoint].position, Quaternion.identity);
+        var capybara = Instantiate(_capybaraPrefabs[indexCapybara], _spawnPoints[indexSpawnPoint].position, Quaternion.identity);
+
+        if (_defaultGameMode == false)
+            capybara.GetComponent<NavMeshAgent>().acceleration = 80;
     }
 
     private void SpawnCapybariesAtAllPoints()

@@ -9,9 +9,11 @@ public class TimeController : MonoBehaviour
 {
     public Action OnMinuteLater;
     public Action OnLastTenSeconds;
-    public Action OnGamePassed;
+    public Action OnTimeOver;
 
-    [SerializeField] private float _minutesUntilGameOver = 5f;
+    [SerializeField] private float _minutesUntilTimeOut = 5f;
+    [SerializeField] private bool _defaultGameMode = true;
+    [SerializeField] private float _secondsUntilSpawnFirstCapybara;
 
     private Text _timeText;
     private float _secUntilGameOver;
@@ -25,8 +27,18 @@ public class TimeController : MonoBehaviour
     private void Start()
     {
         _timeText = GetComponent<Text>();
-        _secUntilGameOver = _minutesUntilGameOver * 60;
+        _secUntilGameOver = _minutesUntilTimeOut * 60;
         _secOneMinuteLater = _secUntilGameOver;
+
+        if (_defaultGameMode)
+            OnMinuteLater?.Invoke();
+        else
+            StartCoroutine(SpawnFirstCapybara());
+    }
+
+    private IEnumerator SpawnFirstCapybara()
+    {
+        yield return new WaitForSeconds(_secondsUntilSpawnFirstCapybara);
         OnMinuteLater?.Invoke();
     }
 
@@ -39,7 +51,9 @@ public class TimeController : MonoBehaviour
             if (_secUntilGameOver <= _secOneMinuteLater - 60)
             {
                 _secOneMinuteLater = _secUntilGameOver;
-                OnMinuteLater?.Invoke();
+
+                if (_defaultGameMode == true)
+                    OnMinuteLater?.Invoke();
             }
 
             if (_secUntilGameOver <= 10 && _lastTenSeconds == false)
@@ -63,10 +77,8 @@ public class TimeController : MonoBehaviour
         if (_secUntilGameOver <= 0)
         {
             _gameInProgress = false;
-            OnGamePassed?.Invoke();
-            PlayerEventsController.Instance
-                .GetPlayer
-                .MoveAndRotatePlayer(new Vector3(0, 0, -51), new Vector3(0, 90, 0));
+            OnTimeOver?.Invoke();
+            TimeOver();
             gameObject.SetActive(false);
         }
     }
@@ -79,15 +91,35 @@ public class TimeController : MonoBehaviour
 
     public void RestartTime()
     {
-        _secUntilGameOver = _minutesUntilGameOver * 60;
+        _secUntilGameOver = _minutesUntilTimeOut * 60;
         _secOneMinuteLater = _secUntilGameOver;
         _gameInProgress = true;
         _lastTenSeconds = false;
-        OnMinuteLater?.Invoke();
+
+        gameObject.SetActive(true);
+
+        if (_defaultGameMode)
+            OnMinuteLater?.Invoke();
+        else
+            StartCoroutine(SpawnFirstCapybara());
     }
 
     public void PauseTime()
     {
         _gameInProgress = false;
+    }
+
+    private void TimeOver()
+    {
+        if (_defaultGameMode == true)
+        {
+            PlayerEventsController.Instance
+                .GetPlayer
+                .MoveAndRotatePlayer(new Vector3(0, 0, -51), new Vector3(0, 90, 0));
+        }
+        else
+        {
+            PlayerEventsController.Instance.GameOver();
+        }
     }
 }

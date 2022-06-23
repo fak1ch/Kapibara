@@ -1,10 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Utils : MonoSingleton<Utils>
 {
     [SerializeField] private Text _debugLog;
     private string _textLog = "DEBUG LOG: \n";
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SceneManager.LoadScene("RandomMaze");
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SceneManager.LoadSceneAsync("RandomMaze");
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("Playground");
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadSceneAsync("Playground");
+        }
+    }
 
     public void DebugLog(string msg)
     {

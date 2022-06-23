@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
+public class AdsInitializer : MonoSingleton<AdsInitializer>, IUnityAdsInitializationListener
 {
     [SerializeField] private RewardedAdsButton _rewardedAdsButton;
 

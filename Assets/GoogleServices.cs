@@ -12,17 +12,16 @@ public class GoogleServices : MonoSingleton<GoogleServices>
     public event Action<bool> OnAdsDeactivateChanged;
     public event Action OnAuthenticationSuccess;
 
-    [SerializeField] private InputField _textField1;
-    [SerializeField] private InputField _textField2;
-    [SerializeField] private InputField _textField3;
-
     private bool _isAdsDeactivate = false;
     private bool _isSaving = true;
     private DateTime _startDateTime;
 
     private void Awake()
     {
-        PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
+        if (PlayGamesPlatform.Instance.IsAuthenticated() == false)
+        {
+            PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
+        }
     }
 
     private void ProcessAuthentication(SignInStatus status)
