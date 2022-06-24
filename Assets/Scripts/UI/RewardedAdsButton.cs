@@ -27,7 +27,10 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     public void ShowAd()
     {
-        Advertisement.Show(_adUnitId, this);
+        if (Advertisement.isInitialized)
+        {
+            Advertisement.Show(_adUnitId, this);
+        }
     }
 
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)

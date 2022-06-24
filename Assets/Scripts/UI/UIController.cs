@@ -13,6 +13,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _uiButtons;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _selectGameModePanel;
+    [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private GameObject _customizePanel;
 
     private void Awake()
     {
@@ -23,6 +25,7 @@ public class UIController : MonoBehaviour
     public void PlayButtonClick()
     {
         _selectGameModePanel.SetActive(true);
+        FindObjectOfType<ApplyShopSettings>().ApplySettings();
     }
 
     public void StartGame()
@@ -63,5 +66,15 @@ public class UIController : MonoBehaviour
     public void HideGameOverPanel()
     {
         _gameOverPanel.SetActive(false);
+    }
+
+    public void ShowShopPanel()
+    {
+        _shopPanel.SetActive(true);
+    }
+
+    public void ShowCustomizePanel()
+    {
+        _customizePanel.SetActive(true);
     }
 }

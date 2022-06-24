@@ -41,6 +41,9 @@ public class Capybara : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
+        Sprite value = StaticClass.GetRandomSprite();
+        if (value != null)
+            GetComponent<SpriteRenderer>().sprite = value;
         if (Random.Range(0, 21) == 0)
             _audioSource.clip = _audioClip;
         StartCoroutine(NewTargetPosition());

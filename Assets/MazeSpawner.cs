@@ -6,6 +6,7 @@ public class MazeSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _mazeCell;
     [SerializeField] private RealtimeNavMeshBaker _environment;
+    [SerializeField] private MeshRenderer _ground;
 
     [SerializeField] private int _width;
     [SerializeField] private int _height;
@@ -16,6 +17,10 @@ public class MazeSpawner : MonoBehaviour
     {
         _width = width;
         _height = height;
+
+        _ground.material = StaticClass._groundMaterial;
+        _mazeCell.GetComponent<MazeCell>().WallLeft.GetComponent<MeshRenderer>().material = StaticClass._wallMaterial;
+        _mazeCell.GetComponent<MazeCell>().WallBottom.GetComponent<MeshRenderer>().material = StaticClass._wallMaterial;
 
         MazeGenerator mazeGenerator = new MazeGenerator(_width, _height);
 

@@ -1931,6 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mazeCell: {fileID: 5373862256050031443, guid: b10ca5b4bd84ec74f80222c0a12ea52a, type: 3}
   _environment: {fileID: 2141287330}
+  _ground: {fileID: 1479136625}
   _width: 10
   _height: 10
 --- !u!4 &595355229
@@ -2942,7 +2943,7 @@ MonoBehaviour:
   _rewardedAdsButton: {fileID: 880647038}
   _androidGameId: 4763307
   _iOSGameId: 4763306
-  _testMode: 1
+  _testMode: 0
 --- !u!4 &880647040
 Transform:
   m_ObjectHideFlags: 0
@@ -4341,7 +4342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5810,7 +5811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1878870932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5956,6 +5957,8 @@ MonoBehaviour:
   _uiButtons: {fileID: 0}
   _gameOverPanel: {fileID: 1233915601}
   _selectGameModePanel: {fileID: 0}
+  _shopPanel: {fileID: 0}
+  _customizePanel: {fileID: 0}
 --- !u!114 &1984790626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6170,7 +6173,7 @@ Transform:
   m_Children:
   - {fileID: 1479136621}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!220 &2141287328
 LightProbeGroup:
