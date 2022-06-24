@@ -14,7 +14,7 @@ public class GoogleServices : MonoSingleton<GoogleServices>
 
     private bool _isAdsDeactivate = false;
     private bool _isSaving = true;
-    private DateTime _startDateTime;
+    private DateTime _startDateTime; 
 
     private void Awake()
     {
