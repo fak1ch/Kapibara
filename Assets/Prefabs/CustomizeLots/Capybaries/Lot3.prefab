@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 3483596141609522110}
   - component: {fileID: 3483596141609522104}
   - component: {fileID: 3483596141609522111}
+  - component: {fileID: 8535072872844655519}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -339,16 +340,30 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 125
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 256
-    m_Alignment: 0
+    m_MaxSize: 125
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Gold capybara
+--- !u!114 &8535072872844655519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483596141609522109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a48f41af17a304782ef12c80546147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 24
+  IsFirstChange: 1
 --- !u!1 &3483596141842251473
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class ReturnToMenu : MonoBehaviour
             if (other.TryGetComponent(out Player player))
             {
                 _isOn = false;
-                SceneManager.LoadSceneAsync("Playground");
+                SceneManager.LoadSceneAsync("Playground", LoadSceneMode.Single);
             }
         }
     }

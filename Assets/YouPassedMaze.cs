@@ -17,9 +17,6 @@ public class YouPassedMaze : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_difficult > 1)
-            _coinsCount += _difficult * 100;
-
         _coinsCount += (int)(_timeController.SecUntilGameOver * 100 * _difficult)/(int)_timeController.MaxSeconds;
         _coinsText.text = _coinsCount.ToString();
     }

@@ -53,19 +53,19 @@ public class SelectGameMode : MonoBehaviour
     public void EasyMazeButtonClick()
     {
         if (_mazeClosers[0] == false)
-            RandomMaze.Load(new SceneData(10, 10, 1, 2f, 30, 8, 2));
+            RandomMaze.Load(new SceneData(15, 15, 1, 2f, 30, 8, 2));
     }
 
     public void MediumMazeButtonClick()
     {
         if (_mazeClosers[1] == false)
-            RandomMaze.Load(new SceneData(15, 15, 2, 3f, 30, 8, 8));
+            RandomMaze.Load(new SceneData(20, 20, 2, 2f, 30, 8, 8));
     }
 
     public void ImpossibleMazeButtonClick()
     {
         if (_mazeClosers[2] == false)
-            RandomMaze.Load(new SceneData(20, 20, 3, 1f, 20, 80, 10));
+            RandomMaze.Load(new SceneData(25, 25, 3, 1f, 10, 80, 10));
     }
 
     public void BackButtonClick()

@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 4149813910606289635}
   - component: {fileID: 4149813910606289637}
   - component: {fileID: 4149813910606289636}
+  - component: {fileID: 992024191763211206}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -423,8 +424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -123, y: 58.899994}
-  m_SizeDelta: {x: 1093.611, y: 217.8}
+  m_AnchoredPosition: {x: -261.9429, y: 83.899994}
+  m_SizeDelta: {x: 917.006, y: 167.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4149813910606289637
 CanvasRenderer:
@@ -458,16 +459,30 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 125
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 256
-    m_Alignment: 0
+    m_MaxSize: 125
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Default terrain
+  m_Text: Painted capybara
+--- !u!114 &992024191763211206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4149813910606289634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a48f41af17a304782ef12c80546147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 25
+  IsFirstChange: 1
 --- !u!1 &4149813910610164869
 GameObject:
   m_ObjectHideFlags: 0

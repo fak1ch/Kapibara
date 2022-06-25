@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 6973849216477458092}
   - component: {fileID: 6973849216477458090}
   - component: {fileID: 6973849216477458093}
+  - component: {fileID: 6813990880163070736}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -441,8 +442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -163, y: 58.899994}
-  m_SizeDelta: {x: 925.126, y: 217.8}
+  m_AnchoredPosition: {x: -256.902, y: 58.899994}
+  m_SizeDelta: {x: 994.766, y: 217.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6973849216477458090
 CanvasRenderer:
@@ -476,16 +477,30 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 125
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 256
-    m_Alignment: 0
+    m_MaxSize: 125
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Sand terrain
+--- !u!114 &6813990880163070736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973849216477458095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a48f41af17a304782ef12c80546147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 27
+  IsFirstChange: 1
 --- !u!1 &6973849216538594295
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +816,6 @@ MonoBehaviour:
   _groundMaterial: {fileID: 2100000, guid: 6e755e57165f5274ab82144afa9cc138, type: 2}
   _wallMaterial: {fileID: 2100000, guid: facade4109505ff48b40402ef31c62aa, type: 2}
   _toggle: {fileID: 1767392756078983003}
-  IsChanged: 0
 --- !u!1 &6973849217036048234
 GameObject:
   m_ObjectHideFlags: 0

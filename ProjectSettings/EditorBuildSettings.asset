@@ -11,18 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RandomMaze.unity
     guid: 7e78c751831dc414c88dc3ba85b5f24b
-  - enabled: 1
-    path: Assets/unity-typed-scenes-master/Assets/Plugins/TypedScenes/Samples/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Samples/Advertisement/4.2.1/UnityAds Example App/Scenes/UnityAdsExample.unity
-    guid: 0b05e71623db14446af6380781088410
-  - enabled: 1
-    path: Assets/Samples/In App Purchasing/4.1.5/Google Play Store - 01 Upgrading
-      and Downgrading Subscriptions/UpgradeDowngradeSubscription.unity
-    guid: 48dc76e4759b14da1a314f3503b3b7aa
-  - enabled: 1
-    path: Assets/Joystick Pack/Examples/Example_Scene.unity
-    guid: 0bfc6c0eb1f58e94497a70dce77cf66c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

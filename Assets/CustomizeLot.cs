@@ -26,7 +26,6 @@ public class CustomizeLot : MonoBehaviour
 
     private void ToggleValueChanged(Toggle toggle)
     {
-        Utils.Instance.DebugLog(toggle.isOn.ToString());
         if (toggle.isOn == true)
         {
             PlayerPrefs.SetInt(_key, 1);
