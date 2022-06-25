@@ -405,6 +405,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 042f26b098623894cb714955b0e02921, type: 3}
   _groundMaterial: {fileID: 0}
   _wallMaterial: {fileID: 0}
+  _toggle: {fileID: 6305091453635805195}
 --- !u!1 &4345915752852264770
 GameObject:
   m_ObjectHideFlags: 0

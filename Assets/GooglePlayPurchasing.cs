@@ -11,6 +11,11 @@ public class GooglePlayPurchasing : MonoBehaviour
         {
             GoogleServices.Instance.SaveDataRemoveAdsBool(true);
         }
+
+        if (product.definition.id == "com.fak1ch.add5000bucks")
+        {
+            FindObjectOfType<CoinsWallet>().AddBucks(5000);
+        }
     }
 
     public void PurchaseComplete()

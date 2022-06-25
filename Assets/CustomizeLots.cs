@@ -16,7 +16,7 @@ public class CustomizeLots : MonoBehaviour
 
     private void Start()
     {
-        if (_isOn == true)
+        if (_isOn == true && _isTerrains == true)
         {
             _isOn = false;
             GameObject lot = Instantiate(_lots[0].gameObject, _lotSpawnPoints[0]);
@@ -35,6 +35,7 @@ public class CustomizeLots : MonoBehaviour
             lot.transform.SetParent(this.gameObject.transform);
             var script = lot.GetComponent<CustomizeLot>();
             _spawnedLots.Add(script);
+            script.CheckSelectFlag();
         }
 
         for (int i = 0; i < _lots.Length; i++)
@@ -45,20 +46,23 @@ public class CustomizeLots : MonoBehaviour
                 lot.transform.SetParent(this.gameObject.transform);
                 var script = lot.GetComponent<CustomizeLot>();
                 _spawnedLots.Add(script);
+                script.CheckSelectFlag();
             }
         }
+
+
     }
 
     public List<CustomizeLot> GetSelectedLots()
     {
-        List<CustomizeLot> result = new List<CustomizeLot>(_spawnedLots);
+        List<CustomizeLot> result = new List<CustomizeLot>();
 
-        if (_isTerrains)
+        for(int i = 0; i < _spawnedLots.Count; i++)
         {
-            if (result.Count == 1)
-                result.Add(_spawnedLots[0]);
-            else
-                result.Add(_spawnedLots[Random.Range(0, _spawnedLots.Count)]);
+            if (_spawnedLots[i].Toggle.isOn == true)
+            {
+                result.Add(_spawnedLots[i]);
+            }
         }
 
         return result;
@@ -70,8 +74,17 @@ public class CustomizeLots : MonoBehaviour
 
         if (_isTerrains == true)
         {
-            StaticClass._groundMaterial = list[0]._groundMaterial;
-            StaticClass._wallMaterial = list[0]._wallMaterial;
+            if (list.Count == 0)
+            {
+                StaticClass._groundMaterial = null;
+                StaticClass._wallMaterial = null;
+            }
+            else
+            {
+                var randomLot = list[Random.Range(0, list.Count)];
+                StaticClass._groundMaterial = randomLot._groundMaterial;
+                StaticClass._wallMaterial = randomLot._wallMaterial;
+            }
         }
         else
         {
@@ -80,6 +93,7 @@ public class CustomizeLots : MonoBehaviour
             {
                 sprites.Add(list[i]._sprite);
             }
+            StaticClass._sprites = sprites.ToArray();
         }
     }
 }

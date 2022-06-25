@@ -1932,8 +1932,10 @@ MonoBehaviour:
   _mazeCell: {fileID: 5373862256050031443, guid: b10ca5b4bd84ec74f80222c0a12ea52a, type: 3}
   _environment: {fileID: 2141287330}
   _ground: {fileID: 1479136625}
-  _width: 10
-  _height: 10
+  _width: 15
+  _height: 15
+  _groundMaterial: {fileID: 2100000, guid: 6b911390c5825014e8377183a7837d3f, type: 2}
+  _wallMaterial: {fileID: 2100000, guid: dbf898c9f9c4a2d46aa6336e23caeb61, type: 2}
 --- !u!4 &595355229
 Transform:
   m_ObjectHideFlags: 0

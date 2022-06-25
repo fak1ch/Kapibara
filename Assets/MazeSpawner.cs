@@ -11,6 +11,9 @@ public class MazeSpawner : MonoBehaviour
     [SerializeField] private int _width;
     [SerializeField] private int _height;
 
+    [SerializeField] private Material _groundMaterial;
+    [SerializeField] private Material _wallMaterial;
+
     private MazeCell _exitCell;
 
     public void AfterSceneLoader(int width, int height)
@@ -18,9 +21,18 @@ public class MazeSpawner : MonoBehaviour
         _width = width;
         _height = height;
 
-        _ground.material = StaticClass._groundMaterial;
-        _mazeCell.GetComponent<MazeCell>().WallLeft.GetComponent<MeshRenderer>().material = StaticClass._wallMaterial;
-        _mazeCell.GetComponent<MazeCell>().WallBottom.GetComponent<MeshRenderer>().material = StaticClass._wallMaterial;
+        if (StaticClass._groundMaterial == null)
+        {
+            _ground.material = _groundMaterial;
+            _mazeCell.GetComponent<MazeCell>().WallLeft.GetComponent<MeshRenderer>().material = _wallMaterial;
+            _mazeCell.GetComponent<MazeCell>().WallBottom.GetComponent<MeshRenderer>().material = _wallMaterial;
+        }
+        else
+        {
+            _ground.material = StaticClass._groundMaterial;
+            _mazeCell.GetComponent<MazeCell>().WallLeft.GetComponent<MeshRenderer>().material = StaticClass._wallMaterial;
+            _mazeCell.GetComponent<MazeCell>().WallBottom.GetComponent<MeshRenderer>().material = StaticClass._wallMaterial;
+        }
 
         MazeGenerator mazeGenerator = new MazeGenerator(_width, _height);
 
