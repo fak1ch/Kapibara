@@ -27,7 +27,7 @@ public class Translator : MonoBehaviour
             "Restart", //12
             "Respawn ads", //13
             "capybucks", //14
-            "Alive 5 min", //15
+            "Alive 3 min", //15
             "Easy maze", //16
             "Medium maze", //17
             "Impossible maze", //18
@@ -65,7 +65,7 @@ public class Translator : MonoBehaviour
             "Рестарт", //12
             "Респавн ads", //13
             "капибаксов", //14
-            "Живи 5 мин", //15
+            "Живи 3 мин", //15
             "легкий лабиринт", //16
             "средний лабиринт", //17
             "невозможный лабиринт", //18

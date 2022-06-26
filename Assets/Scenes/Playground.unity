@@ -11654,7 +11654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26b1be192903b64fb9134e7cb6d3e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minutesUntilTimeOut: 0.1
+  _minutesUntilTimeOut: 3
   _defaultGameMode: 1
   _secondsUntilSpawnFirstCapybara: 0
   _selectGameMode: {fileID: 1252945591}
@@ -16431,7 +16431,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: alive 5 min
+  m_Text: alive 3 min
 --- !u!222 &1284190614
 CanvasRenderer:
   m_ObjectHideFlags: 0
