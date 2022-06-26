@@ -12,6 +12,7 @@ public class PlaygroundEntry : MonoBehaviour, ISceneLoadHandler<PlaygroundData>
     {
         _wallet.AddBucks(playgroundData.CoinsCount);
         _selectGameMode.MazeComplete(playgroundData.Difficult);
+        //StaticClass._sprites = null;
     }
 }
 

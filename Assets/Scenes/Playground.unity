@@ -18029,7 +18029,7 @@ MonoBehaviour:
   - {fileID: 2077373140}
   - {fileID: 231800029}
   _defaultGameMode: 1
-  CapybaraSpeed: 10
+  CapybaraSpeed: 8
   CapybaraAccelaration: 8
 --- !u!1 &1424631749
 GameObject:

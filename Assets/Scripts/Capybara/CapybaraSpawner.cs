@@ -52,8 +52,12 @@ public class CapybaraSpawner : MonoBehaviour
 
         var capybara = Instantiate(_capybaraPrefabs[indexCapybara], _spawnPoints[indexSpawnPoint].position, Quaternion.identity);
 
-        capybara.GetComponent<NavMeshAgent>().acceleration = CapybaraAccelaration;
-        capybara.GetComponent<NavMeshAgent>().speed = CapybaraSpeed;
+        if (_defaultGameMode == false)
+        {
+            var capybaraNavMesh = capybara.GetComponent<NavMeshAgent>();
+            capybaraNavMesh.acceleration = CapybaraAccelaration;
+            capybaraNavMesh.speed = CapybaraSpeed;
+        }
     }
 
     private void SpawnCapybariesAtAllPoints()
